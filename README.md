@@ -59,7 +59,7 @@ Open `chaos/engine.yaml` with your favorite text editor. This is the file that d
 The file has three main sections:
 - `appinfo`: This tells the Litmus operator which application to target. You have to specify the namespace, a label selector, and the type of resource.
 - `experiments`: A list of experiments to run. In this case, we are running the [Pod Delete experiment](https://docs.litmuschaos.io/docs/pod-delete/).
-- `experiments.spec.components`: The experiment-specific value overrides. In this case, we are telling the experiment to only kill 1 pod. The allowed files are defined on the [ChaosExperiment manifest](chaos/experiment.yaml). 
+- `experiments.spec.components`: The experiment-specific value overrides. In this case, we are telling the experiment to kill 1 pod over 30 seconds. The allowed files are defined on the [ChaosExperiment manifest](chaos/experiment.yaml). 
 
 Go to the `spec.appinfo` section, and update the value of `appns` to the name of your namespace. 
 

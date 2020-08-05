@@ -19,3 +19,7 @@ spec:
           env:
             - name: KILL_COUNT
               value: '1'
+            - name: TOTAL_CHAOS_DURATION
+              value: '60s'
+            - name: CHAOS_INTERVAL
+              value: '15s'
