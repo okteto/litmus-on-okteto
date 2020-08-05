@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chaos-operator-ce
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: chaos-operator
+  template:
+    metadata:
+      labels:
+        name: chaos-operator
+    spec:
+      containers:
+        - name: chaos-operator
+          image: litmuschaos/chaos-operator:1.6.2
+          command:
+          - chaos-operator
+          imagePullPolicy: Always
+          env:
+            - name: CHAOS_RUNNER_IMAGE
+              value: "litmuschaos/chaos-runner:1.6.2"
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "chaos-operator"

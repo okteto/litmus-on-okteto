@@ -1,0 +1,5 @@
+icon: https://raw.githubusercontent.com/litmuschaos/icons/master/litmus.png
+deploy:
+  - kubectl apply -f application/k8s.yaml
+  - kubectl apply -f chaos/litmus.yaml
+  - kubectl apply -f chaos/experiment.yaml

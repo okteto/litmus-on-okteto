@@ -1,0 +1,74 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Deletes a pod belonging to a deployment/statefulset/daemonset
+kind: ChaosExperiment
+metadata:
+  name: experiment
+  version: 0.1.19
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "deployments"
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "configmaps"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/go-runner:1.6.2"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments/pod-delete
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '15'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # provide the kill count
+    - name: KILL_COUNT
+      value: ''
+
+    - name: FORCE
+      value: 'true'
+
+    - name: CHAOS_INTERVAL
+      value: '5'
+
+    - name: LIB_IMAGE
+      value: 'litmuschaos/pod-delete-helper:latest'
+
+    - name: LIB
+      value: 'litmus'    
+    labels:
+      name: pod-delete
