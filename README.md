@@ -20,41 +20,57 @@ For this example you'll need a free Okteto Cloud account, and `kubectl` installe
 
 [![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://cloud.okteto.com/deploy?repository=https://github.com/okteto/litmus-on-okteto)
 
+This will automatically deploy the following resources on your Okteto Cloud account:
+- The Litmus Chaos operator
+- The Pod-Delete experiment
+- The Hello-World application, configured with 2 replicas
 
 ## Download your Kubernetes Credentials
 
 If this is the first time you use Okteto Cloud, you'll need to [download your Kubernetes credentials](https://okteto.com/docs/cloud/credentials) in order to run `kubectl` commands. 
 
-## Call the Application
-
-Open a local terminal, and run the following script. This script will call the application once very second. You can get the application's endpoint for the Okteto Cloud URL.
-
-```console
-./call.sh <your application endpoint>
-```
-
-## Start the chaos experiment
-
-Clone the repository into a local folder.
+## Get the Code
 
 ```console
 git clone https://github.com/okteto/litmus-on-okteto
 ```
 
+## Call the Application
+
+Open a local terminal, and run the script below. This script will call the application once very second. You can get the application's endpoint for the Okteto Cloud URL.
+
+```console
+./call.sh <your application endpoint>
+```
+
+```console
+Hello world!
+Hello world!
+Hello world!
+...
+```
+
+
+
+## Start the chaos experiment
 
 Open `chaos/engine.yaml` with your favorite text editor. This is the file that defines which experiment to run, and on which resources. 
 
 The file has three main sections:
 - `appinfo`: This tells the Litmus operator which application to target. You have to specify the namespace, a label selector, and the type of resource.
-- `experiments`: A list of experiments to run. In this case, we are running the `pod-delete` experiment.
+- `experiments`: A list of experiments to run. In this case, we are running the [Pod Delete experiment](https://docs.litmuschaos.io/docs/pod-delete/).
 - `experiments.spec.components`: The experiment-specific value overrides. In this case, we are telling the experiment to only kill 1 pod. The allowed files are defined on the [ChaosExperiment manifest](chaos/experiment.yaml). 
 
 Go to the `spec.appinfo` section, and update the value of `appns` to the name of your namespace. 
 
 Open a second terminal, and run the following command to start the chaos experiment:
 
-```
+```console
 kubectl apply -f chaos/engine.yaml
+```
+
+```console
+chaosengine.litmuschaos.io/pod-killer-chaos created
 ```
 
 ## Observe Chaos results
@@ -110,7 +126,7 @@ Events:
 
 ## Conclusion
 
-In this post, we showed how you can deploy a development environment that includes an application, the LitmusChaos operator, and your chaos experiment, all in one click. Then, we ran a chaos experiment, and validated that our application is resilient to a pod failure. 
+In this post, we showed how you can deploy a replicable development environment that includes an application, the LitmusChaos operator, and your chaos experiment, all in one click. Then, we ran a chaos experiment, validating that our application is resilient to a pod failure. 
 
-Interested in Kubernetes and Chaos Engineering? Join us the [Okteto](https://kubernetes.slack.com/messages/CM1QMQGS0/) and [Litmus](https://kubernetes.slack.com/messages/CNXNB0ZTN/) slack communities and let's get the conversation started!
+Interested in Kubernetes and Chaos Engineering? Join us in the [Okteto](https://kubernetes.slack.com/messages/CM1QMQGS0/) and [Litmus](https://kubernetes.slack.com/messages/CNXNB0ZTN/) slack communities and let's get the conversation started!
 
