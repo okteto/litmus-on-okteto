@@ -4,7 +4,7 @@ description:
     Deletes a pod belonging to a deployment/statefulset/daemonset
 kind: ChaosExperiment
 metadata:
-  name: experiment
+  name: pod-delete
   version: 0.1.19
 spec:
   definition:

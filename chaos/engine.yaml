@@ -3,25 +3,19 @@ kind: ChaosEngine
 metadata:
   name: pod-killer-chaos
 spec:
-  # It can be true/false
   annotationCheck: 'true'
-  # It can be active/stop
   engineState: 'active'
-  #ex. values: ns1:name=percona,ns2:run=nginx
-  auxiliaryAppInfo: ''
   appinfo:
-    appns: ''
+    appns: 'rberrelleza'
     applabel: 'app=hello-world'
     appkind: 'deployment'
   chaosServiceAccount: default
   monitoring: false
-  # It can be delete/retain
   jobCleanUpPolicy: 'delete'
   experiments:
-    - name: experiment
+    - name: pod-delete
       spec:
         components:
           env:
-            # specify the name of the container to be killed
-            - name: TARGET_CONTAINER
-              value: 'hello-world'
+            - name: KILL_COUNT
+              value: '1'
