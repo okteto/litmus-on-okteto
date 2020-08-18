@@ -6,7 +6,6 @@ spec:
   annotationCheck: 'true'
   engineState: 'active'
   appinfo:
-    appns: 'rberrelleza'
     applabel: 'app=hello-world'
     appkind: 'deployment'
   chaosServiceAccount: default
