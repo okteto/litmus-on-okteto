@@ -18,7 +18,7 @@ For this example you'll need a free Okteto Cloud account, and `kubectl` installe
 
 ## Deploy your Development Environment
 
-[![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://cloud.okteto.com/deploy?repository=https://github.com/okteto/litmus-on-okteto&branch=community-call)
+[![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://cloud.okteto.com/deploy?repository=https://github.com/okteto/litmus-on-okteto)
 
 This will automatically deploy the following resources on your Okteto Cloud account:
 - The Litmus Chaos operator
