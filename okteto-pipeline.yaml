@@ -1,4 +1,5 @@
 icon: https://raw.githubusercontent.com/litmuschaos/icons/master/litmus.png
 deploy:
+  - helm upgrade --install litmuschaos okteto/litmus
   - kubectl apply -f application/k8s.yaml
   - kubectl apply -f chaos/experiment.yaml
