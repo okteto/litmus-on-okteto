@@ -18,7 +18,7 @@ For this example you'll need a free Okteto Cloud account, and `kubectl` installe
 
 ## Deploy your Development Environment
 
-[![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://cloud.okteto.com/deploy?repository=https://github.com/okteto/litmus-on-okteto)
+[![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://cloud.okteto.com/deploy?repository=https://github.com/okteto/litmus-on-okteto&branch=community-call)
 
 This will automatically deploy the following resources on your Okteto Cloud account:
 - The Litmus Chaos operator
@@ -127,4 +127,3 @@ Events:
 In this post, we showed how you can deploy a replicable development environment that includes an application, the LitmusChaos operator, and your chaos experiment, all in one click. Then, we ran a chaos experiment, validating that our application is resilient to a pod failure. 
 
 Interested in Kubernetes and Chaos Engineering? Join us in the [Okteto](https://kubernetes.slack.com/messages/CM1QMQGS0/) and [Litmus](https://kubernetes.slack.com/messages/CNXNB0ZTN/) slack communities and let's get the conversation started!
-
