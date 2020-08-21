@@ -17,7 +17,7 @@ spec:
         app: hello-world
     spec:
       containers:
-      - image: okteto/hello-world:golang
+      - image: okteto/hello-chaos
         name: hello-world
         livenessProbe:
           httpGet:
